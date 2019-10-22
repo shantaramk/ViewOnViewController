@@ -1,3 +1,4 @@
+
 //
 //  CustomView.swift
 //  UITestDemo
@@ -9,13 +10,42 @@
 import UIKit
 
 class CustomView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        self.backgroundColor = .red
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupView()
+        self.backgroundColor = .red
 
+    }
 }
+
+extension CustomView {
+    
+    func setupView() {
+        let customView = loadNibFile()
+        
+        //set frame based on the current screen
+        
+        customView.frame = bounds
+        
+        customView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        addSubview(customView)
+    }
+    
+    func loadNibFile() -> UIView {
+        
+        let bundle = Bundle(for: type(of: self))
+        let nibFile = UINib(nibName: "CustomView", bundle: bundle)
+        let viewFile = nibFile.instantiate(withOwner: self, options: nil)[0] as! UIView
+        return viewFile
+    }
+}
+
+ 

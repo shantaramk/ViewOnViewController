@@ -8,14 +8,54 @@
 
 import UIKit
 
+private class Student {
+    var name: String = ""
+}
+
+public class FooButton {
+    public var weight: Double = 1.0
+}
+
+public class BarButton: FooButton {
+    override public var weight: Double {
+        get {
+            return self.weight
+        }
+        set {
+            //∂∂∂DDD∂∂o Nothingddd
+            if newValue != nil {
+                self.weight = newValue
+            }
+        }
+    }
+}
+
+
+
+
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    enum SKill: Int {
+        case a, b, c = 20, f, d = 22
 
+    }
+    
+    enum Alpa: String {
+        case a, b, c = "C", d, f = "D"
+    }
 
+    
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+ 
+        
+        let ram = Student.init()
+        
+            
         return true
     }
 
@@ -43,4 +83,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
